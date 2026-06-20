@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0814" />
+  <title>カクテル千鳥足 3D ―見知らぬ天井―</title>
+  <meta name="description" content="酔っぱらいの一人称で夜の路地を駆け、迫りくる電柱や自転車をかわす。千鳥足のドリフトを補正しながら、どこまで歩けるか。" />
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <!-- 酔いの色オーバーレイ（合成のみ＝軽い） -->
+  <div id="tint" class="overlay"></div>
+  <div id="vig" class="overlay"></div>
+
+  <!-- 進路レティクル -->
+  <div id="reticle">
+    <svg width="54" height="54" viewBox="0 0 54 54" aria-hidden="true">
+      <circle cx="27" cy="27" r="15" fill="none" stroke="#5cffd0" stroke-width="2" opacity=".85"/>
+      <line x1="27" y1="4" x2="27" y2="13" stroke="#5cffd0" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud">
+    <div id="score">
+      <div class="m"><span id="dist">0</span> m</div>
+      <div class="s" id="pts">0</div>
+      <div class="b">BEST <span id="best">0</span></div>
+    </div>
+    <div id="top-right">
+      <div id="mult">× 1.0</div>
+      <div id="band">深夜2:00</div>
+      <div id="combo">0 COMBO</div>
+    </div>
+    <div id="meterwrap">
+      <div id="meterlabel"><span>酔い度</span><span class="warn" id="warn">昏倒寸前！</span></div>
+      <div id="meter"><div id="meterfill"></div></div>
+    </div>
+  </div>
+
+  <!-- タイトル -->
+  <section id="title" class="screen">
+    <h1>ワンタップ</h1>
+    <div class="big">カクテル<br>千鳥足 <span class="dim">3D</span></div>
+    <div class="rule"></div>
+    <p>奥から迫る電柱・自販機・自転車を、<br>
+       左右に避けて夜の路地を駆け抜けろ。<br>
+       ただし足元は<span class="key">千鳥足</span>。<br>勝手に揺れる体を補正しながら避けろ。</p>
+    <div class="controls">
+      <span>◀ ▶ / A D / 画面左右</span>
+    </div>
+    <div class="cta">▶ タップ／スペースで開店</div>
+    <div class="sub">M：消音　・　初回は読み込みに数秒</div>
+  </section>
+
+  <!-- ゲームオーバー -->
+  <section id="over" class="screen hidden">
+    <div class="line" id="overline"></div>
+    <div id="card">
+      <h2>=== 翌朝の記録 ===</h2>
+      <div class="row"><span class="k">歩いた距離</span><span>…… <span id="r-dist">0</span> m</span></div>
+      <div class="row"><span class="k">飲んだ杯数</span><span>…… <span id="r-drinks">0</span> 杯</span></div>
+      <div class="row"><span class="k">ニアミス</span><span>…… <span id="r-near">0</span> 回</span></div>
+      <div class="row"><span class="k">最高倍率</span><span>…… × <span id="r-mult">1.0</span></span></div>
+      <div class="row"><span class="k">記憶の残量</span><span>…… <span id="r-mem">100</span> %</span></div>
+      <hr />
+      <div class="final" id="r-score">0</div>
+      <div class="best" id="r-best">BEST 0</div>
+    </div>
+    <div class="cta" id="retry">▶ もう一杯（リトライ）</div>
+  </section>
+
+  <div id="hint">奥から来る障害物を左右に避けろ・足元は千鳥足</div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
